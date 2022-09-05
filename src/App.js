@@ -1,6 +1,7 @@
 import './App.css';
 import axios from 'axios';
 import React, { useState } from "react";
+import html2canvas from 'html2canvas';
 
 ;
 
@@ -11,6 +12,8 @@ function App() {
   const [peso, setPeso] = useState("");
   const [tipo, setTipo] = useState("");
   const [habilidad, setHabilidad] = useState("");
+  
+ 
 
   //Extraemos el value del input para poder asignarlo donde queramos.
   const  [pokemon, setPokemon] = useState("");
@@ -20,6 +23,7 @@ function App() {
 
 
   const buscar = async () => {
+    try{
     // Configuración para hacer la petición con axios.
     const config = {
       method: `get`,
@@ -54,22 +58,59 @@ function App() {
     setPeso(peso);
     setTipo(tipos);
     setHabilidad(habilidades);
+    } catch (error) {
+      error = "No existe el pokemón"
+      window.alert(error);
+    }
   }
 
+  
+  //No funciona, pq no imnprime el sprite del pokemon, ya que tiene un origen diferente al del htmlToCanvas
+  // const descargarIMG = function(evento) {
+  //   html2canvas(document.querySelector("#carta")).then(canvas => {
+  //     let img = canvas.toDataURL("image/png");
+  //     let link = document.createElement("a");
+  //     link.download = "pokedex.png";
+  //     link.href = img;
+  //     link.click();
+  //     });
+  // }
+  // Posdata: no funciona guardar en local la url del sprite.
+  
   return (
     <div className="App">
-      <div>
-        <h1>PokePedia</h1>
+      <div id='titulo-div'>
+        <h1>Pokepedia</h1>
+      </div>
+      <div id='input-div'>
         <input onChange={onChangePokemon} type="text" id="pokemon" placeholder="Nombre del pokemon..." /><br/>
+      </div>
+      <div id='boton-div'>
         <button onClick={buscar} type='button' id='boton'>Buscar</button>
       </div>
-      <div>
+      <div id='carta'>
+        <div id='fondo'>
+          <img src='CSS/IMG/pokedexFondo2.jpg' />
+        </div>
+        <div id='nombre-div'>
         <p>{nombre}</p>
+        </div>
+        <div id='img-div'>
         <img src={img} />
+        </div>
+        <div id='tipos-div'>
         <p>{tipo}</p>
+        </div>
+        <div id='habilidades-div'>
         <p>{habilidad}</p>
+        </div>
+        <div id='peso-div'>
         <p>{peso}</p>
+        </div>
       </div>
+      {/* <div id='descargar-div'>
+        <button id='botonCrear' onClick={descargarIMG} type="button">Descargar</button>
+      </div> */}
     </div>
   );
 }
