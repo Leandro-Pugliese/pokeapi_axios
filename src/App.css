@@ -47,38 +47,25 @@
 }
 
 #nombre-div {
-  position: absolute;
-  margin-top: -360px;
-  margin-left: 1150px;
+  
 }
 
 #img-div {
-  position: absolute;
-  margin-top: -310px;
-  margin-left: 680px;
+ 
 }
 
 #img-div img {
-  width: 150px;
-  height: 150px;
+  
 }
 
 #tipos-div {
-  position: absolute;
-  margin-left: 1037px;
-  margin-top: -315px;
+  
 }
 
 #habilidades-div {
-  position: absolute;
-  margin-left: 1037px;
-  margin-top: -250px;
-  width: 280px;
-  text-align: left;
+  
 }
 
 #peso-div {
-  position: absolute;
-  margin-left: 1037px;
-  margin-top: -170px;
+  
 }

@@ -1,7 +1,8 @@
 import './App.css';
 import axios from 'axios';
 import React, { useState } from "react";
-import html2canvas from 'html2canvas';
+import { saveAs } from 'file-saver'
+
 
 ;
 
@@ -13,6 +14,8 @@ function App() {
   const [tipo, setTipo] = useState("");
   const [habilidad, setHabilidad] = useState("");
   
+  //Hook para ocultar y mostrar boton de descarga de la img solo cuando buscaste el pokemon.
+  const [hideDownload, setHideDownload] = useState("");
  
 
   //Extraemos el value del input para poder asignarlo donde queramos.
@@ -31,7 +34,7 @@ function App() {
       json: true,
       headers: {
         'Content-Type': 'application/json'
-    } 
+      } 
     }
     
     // Ejecutando petición con axios y la configuración que queremos.
@@ -58,10 +61,15 @@ function App() {
     setPeso(peso);
     setTipo(tipos);
     setHabilidad(habilidades);
+    
+    //Hook para ocultar y mostrar boton de descarga de la img solo cuando buscaste el pokemon.
+    setHideDownload(true)
+
     } catch (error) {
       error = "No existe el pokemón"
       window.alert(error);
     }
+
   }
 
   
@@ -76,6 +84,13 @@ function App() {
   //     });
   // }
   // Posdata: no funciona guardar en local la url del sprite.
+
+
+  //Solo descarga la imagen no toda la info.
+  const downloadImage = () => {
+    saveAs(`${img}`, 'image.jpg') // Put your image url here.
+  }
+
   
   return (
     <div className="App">
@@ -89,28 +104,34 @@ function App() {
         <button onClick={buscar} type='button' id='boton'>Buscar</button>
       </div>
       <div id='carta'>
-        <div id='fondo'>
+        {/* <div id='fondo'>
           <img src='CSS/IMG/pokedexFondo2.jpg' />
-        </div>
+        </div> */}
         <div id='nombre-div'>
-        <p>{nombre}</p>
+          <p>{nombre}</p>
         </div>
         <div id='img-div'>
-        <img src={img} />
+          <img src={img} />
         </div>
         <div id='tipos-div'>
-        <p>{tipo}</p>
+          <p>{tipo}</p>
         </div>
         <div id='habilidades-div'>
-        <p>{habilidad}</p>
+          <p>{habilidad}</p>
         </div>
         <div id='peso-div'>
-        <p>{peso}</p>
+          <p>{peso}</p>
         </div>
+        {(!!hideDownload) && 
+        <div id='boton-div'>
+          <button onClick={downloadImage}>Descargar imagen</button>
+        </div>
+        }
       </div>
       {/* <div id='descargar-div'>
         <button id='botonCrear' onClick={descargarIMG} type="button">Descargar</button>
       </div> */}
+      
     </div>
   );
 }
