@@ -37,13 +37,13 @@
   }
 }
 
-#fondo {
-  margin-top: 15px;
+body {
+  background-color: rgb(212, 255, 229);
 }
 
-#fondo img {
-  width: 800px;
-  height: 490px;
+#carta {
+  display: flex;
+  flex-direction: column;
 }
 
 #nombre-div {
@@ -69,3 +69,17 @@
 #peso-div {
   
 }
+
+.boton {
+ border: solid 0.5px;
+ border-radius: 4px;
+}
+
+.boton:hover {
+  cursor: pointer;
+  background-color: blue;
+  color: whitesmoke;
+  border-color: blue;
+  border-radius: 7px;
+}
+

@@ -1,10 +1,10 @@
 import './App.css';
 import axios from 'axios';
 import React, { useState } from "react";
-import { saveAs } from 'file-saver'
+import { saveAs } from 'file-saver';
 
 
-;
+
 
 function App() {
   //Guardamos la data obtenida de la petición y la asignamos a constantes para poder mostrarla en el html.
@@ -72,20 +72,6 @@ function App() {
 
   }
 
-  
-  //No funciona, pq no imnprime el sprite del pokemon, ya que tiene un origen diferente al del htmlToCanvas
-  // const descargarIMG = function(evento) {
-  //   html2canvas(document.querySelector("#carta")).then(canvas => {
-  //     let img = canvas.toDataURL("image/png");
-  //     let link = document.createElement("a");
-  //     link.download = "pokedex.png";
-  //     link.href = img;
-  //     link.click();
-  //     });
-  // }
-  // Posdata: no funciona guardar en local la url del sprite.
-
-
   //Solo descarga la imagen no toda la info.
   const downloadImage = () => {
     saveAs(`${img}`, 'image.jpg') // Put your image url here.
@@ -101,12 +87,9 @@ function App() {
         <input onChange={onChangePokemon} type="text" id="pokemon" placeholder="Nombre del pokemon..." /><br/>
       </div>
       <div id='boton-div'>
-        <button onClick={buscar} type='button' id='boton'>Buscar</button>
+        <button className='boton' type='button' onClick={buscar} >Buscar</button>
       </div>
       <div id='carta'>
-        {/* <div id='fondo'>
-          <img src='CSS/IMG/pokedexFondo2.jpg' />
-        </div> */}
         <div id='nombre-div'>
           <p>{nombre}</p>
         </div>
@@ -124,14 +107,10 @@ function App() {
         </div>
         {(!!hideDownload) && 
         <div id='boton-div'>
-          <button onClick={downloadImage}>Descargar imagen</button>
+          <button className='boton' type='button' onClick={downloadImage}> Descargar imagen </button>
         </div>
         }
       </div>
-      {/* <div id='descargar-div'>
-        <button id='botonCrear' onClick={descargarIMG} type="button">Descargar</button>
-      </div> */}
-      
     </div>
   );
 }
