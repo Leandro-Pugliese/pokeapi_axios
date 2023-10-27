@@ -1,85 +1,90 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+html {
+  font-size: 10px;
 }
 
 body {
-  background-color: rgb(212, 255, 229);
+  width: 100%;
+  min-height: 100vh;
+  height: 100vh;  
+  font-family: "Poppins", Helvetica, sans-serif;
+  background-color: dimgray;
+  color: rgb(192, 192, 192) ;
 }
 
-#carta {
+#root {
+  min-height: 100vh;
+}
+
+.App {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  height: 100%;
 }
 
-#nombre-div {
-  
+.titulo__container {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 5rem;
 }
 
-#img-div {
- 
+.titulo__principal {
+  font-size: 4rem;
+  margin-bottom: 0.8rem;
+}
+.titulo__info {
+  font-size: 1.5rem;
 }
 
-#img-div img {
-  
+.busqueda__container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin-bottom: 5rem;
 }
 
-#tipos-div {
-  
+.busqueda__input {
+  width: 30%;
+  height: 4rem;
+  border: 0.2rem solid transparent;
+  border-radius: 0.5rem;
+  padding: 1rem 0.5rem;
+  margin-bottom: 1.5rem;
+  outline: none;
+  color: grey;
+  font-size: 1.4rem;
+  justify-items: center;
+  box-shadow: 0 1rem 1rem -8px rgba(0, 0, 0, 0.22);
 }
 
-#habilidades-div {
-  
+.busqueda__input:focus {
+  border: 0.2rem solid royalblue;
 }
 
-#peso-div {
-  
-}
-
-.boton {
- border: solid 0.5px;
- border-radius: 4px;
-}
-
-.boton:hover {
-  cursor: pointer;
-  background-color: blue;
+.busqueda__boton,
+.descarga__boton {
+  padding: 1rem 2rem;
+  font-size: 1.4rem;
+  border: 0.2rem solid whitesmoke;
+  background-color: transparent;
   color: whitesmoke;
-  border-color: blue;
-  border-radius: 7px;
+  border-radius: 3rem;
+  box-shadow: 0 1rem 1rem -8px rgba(0, 0, 0, 0.22);
+  transition: all 300ms linear;
+  margin-top: 1rem;
 }
+
+.busqueda__boton:hover,
+.descarga__boton:hover {
+  cursor: pointer;
+  background-color: royalblue;
+}
+
+.descarga__boton-container {
+  margin-top: 3rem;
+}
+
 
