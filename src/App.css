@@ -84,7 +84,152 @@ body {
 }
 
 .descarga__boton-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 3rem;
 }
 
+/* info pokemon */
+.container__general {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 54rem;
+  min-height: 42rem;
+  background-color: white;
+  border: 0.2rem solid white;
+  border-radius: 2rem;
+}
+.info__container {
+  position: relative;
+  top: 1rem;
+  width: 50rem;
+  height: 40rem;
+  background-image: url(./img/pokedexFondo2.jpg);
+  background-repeat: no-repeat;
+  background-size:contain;
+  font-size: 1.2rem;
+  color: darkslategray;
+  font-weight: 700;
+}
+.container__name {
+  position: relative;
+  top: 12rem;
+  left: 30rem;
+}
+.container__imagen {
+  position: relative;
+  top: 12rem;
+  left: 6rem;
+}
+.info__imagen {
+  width: 13rem;
+  height: 13rem;
+}
+.container__tipo {
+  position: relative;
+  top: 2rem;
+  left: 30rem;
+}
+.container__habilidades {
+  position: relative;
+  top: 4.5rem;
+  left: 30rem;
+}
+.info__habilidades {
+  width: 17.5rem;
+}
+.container__peso {
+  position: relative;
+  top: 7rem;
+  left: 30rem;
+}
+
+/* MSJ ERROR */
+.error__container {
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+
+/* LOADER */
+.lds-spinner {
+  color: official;
+  display: inline-block;
+  position: relative;
+  width: 80px;
+  height: 80px;
+}
+.lds-spinner div {
+  transform-origin: 40px 40px;
+  animation: lds-spinner 1.2s linear infinite;
+}
+.lds-spinner div:after {
+  content: " ";
+  display: block;
+  position: absolute;
+  top: 3px;
+  left: 37px;
+  width: 6px;
+  height: 18px;
+  border-radius: 20%;
+  background: #fff;
+}
+.lds-spinner div:nth-child(1) {
+  transform: rotate(0deg);
+  animation-delay: -1.1s;
+}
+.lds-spinner div:nth-child(2) {
+  transform: rotate(30deg);
+  animation-delay: -1s;
+}
+.lds-spinner div:nth-child(3) {
+  transform: rotate(60deg);
+  animation-delay: -0.9s;
+}
+.lds-spinner div:nth-child(4) {
+  transform: rotate(90deg);
+  animation-delay: -0.8s;
+}
+.lds-spinner div:nth-child(5) {
+  transform: rotate(120deg);
+  animation-delay: -0.7s;
+}
+.lds-spinner div:nth-child(6) {
+  transform: rotate(150deg);
+  animation-delay: -0.6s;
+}
+.lds-spinner div:nth-child(7) {
+  transform: rotate(180deg);
+  animation-delay: -0.5s;
+}
+.lds-spinner div:nth-child(8) {
+  transform: rotate(210deg);
+  animation-delay: -0.4s;
+}
+.lds-spinner div:nth-child(9) {
+  transform: rotate(240deg);
+  animation-delay: -0.3s;
+}
+.lds-spinner div:nth-child(10) {
+  transform: rotate(270deg);
+  animation-delay: -0.2s;
+}
+.lds-spinner div:nth-child(11) {
+  transform: rotate(300deg);
+  animation-delay: -0.1s;
+}
+.lds-spinner div:nth-child(12) {
+  transform: rotate(330deg);
+  animation-delay: 0s;
+}
+@keyframes lds-spinner {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
 

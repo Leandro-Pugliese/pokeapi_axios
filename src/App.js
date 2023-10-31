@@ -11,9 +11,14 @@ function App() {
   const [tipo, setTipo] = useState("");
   const [habilidad, setHabilidad] = useState("");
   
-  //Hook para ocultar y mostrar boton de descarga de la img solo cuando buscaste el pokemon.
-  const [hideDownload, setHideDownload] = useState("");
- 
+  //Hook para renderizar la info del pokemon y el boton para descargar la img.
+  const [hideDownload, setHideDownload] = useState(false);
+  
+  //Hook para msj de error en la busqueda.
+  const [msjError, setMsjError] = useState(false);
+
+  //Hook para loader
+  const [loader, setLoader] = useState(false);
 
   //Extraemos el value del input para poder asignarlo donde queramos.
   const  [pokemon, setPokemon] = useState("");
@@ -21,8 +26,10 @@ function App() {
     setPokemon(evento.target.value.toLowerCase())
   }
 
-
   const buscar = async () => {
+      setHideDownload(false)
+      setMsjError(false)
+      setLoader(true)
       try{
       // Configuración para hacer la petición con axios.
       const config = {
@@ -41,16 +48,16 @@ function App() {
       let data = response.data    
       const nombre = data.name.toUpperCase()
       const img = data.sprites.front_default
-      const peso = `Weight: ${data.weight/10} Kgs`
+      const peso = `${data.weight/10}`
       
       // En el caso que la cantidad de items varie por pokemon, itemaron con map().
       let tipos = ""
       data.types.map(data => tipos += `${data.type.name} / `)
-      tipos = `Type: ${tipos.substring(0, tipos.length - 2)}`
+      tipos = `${tipos.substring(0, tipos.length - 2)}`
       
       let habilidades = ""
       data.abilities.map(data => habilidades += `${data.ability.name} / `)
-      habilidades = `Abilities: ${habilidades.substring(0, habilidades.length - 2)}`
+      habilidades = `${habilidades.substring(0, habilidades.length - 2)}`
       
       // extraemos la data requerida y la llamamos en una constante para plasmarla en el html.
       setNombre(nombre);
@@ -59,14 +66,15 @@ function App() {
       setTipo(tipos);
       setHabilidad(habilidades);
       
-      //Hook para ocultar y mostrar boton de descarga de la img solo cuando buscaste el pokemon.
+      setMsjError(false)
       setHideDownload(true)
+      setLoader(false)
 
     } catch (error) {
-        let msjError = "No existe el pokemón";
-        window.alert(msjError);
+        setHideDownload(false)
+        setMsjError(true)
+        setLoader(false)
     }
-
   }
 
   //Solo descarga la imagen no toda la info.
@@ -78,35 +86,51 @@ function App() {
     <div className="App">
       <header className='titulo__container'>
         <h1 className='titulo__principal'> POKENCICLOPEDIA </h1>
-        <h4 className='titulo__info'>Información del pokémon que quieras al instante</h4>
+        <h4 className='titulo__info'> Información del pokémon que quieras al instante </h4>
       </header>
       <div className='busqueda__container'>
         <input className='busqueda__input' onChange={onChangePokemon} type="text" placeholder="Nombre del pokémon..." />
         <button className='busqueda__boton' type='button' onClick={buscar} > Buscar </button>
       </div>
-      <div className='info__container'>
-        <div className='container__name'>
-          <p className='info__name'> {nombre} </p>
-        </div>
-        <div className='container__imagen'>
-          <img className='info__imagen' src={img} alt='imagen pokémon'/>
-        </div>
-        <div className='container__tipo'>
-          <p className='info__tipo'> {tipo} </p>
-        </div>
-        <div className='container__habilidades'>
-          <p className='info__habilidades'> {habilidad} </p>
-        </div>
-        <div className='container__peso'>
-          <p className='info__peso'> {peso} </p>
-        </div>
-        {
-          (!!hideDownload) && 
-          <div className='descarga__boton-container'>
-            <button className='descarga__boton' type='button' onClick={downloadImage}> Descargar imagen  </button>
+      {
+        (hideDownload) && 
+        <div>
+          <div className='container__general'>
+            <div className='info__container'>
+              <div className='container__name'>
+                <p className='info__name'> Name: {nombre} </p>
+              </div>
+              <div className='container__imagen'>
+                <img className='info__imagen' src={img} alt='imagen pokémon'/>
+              </div>
+              <div className='container__tipo'>
+                <p className='info__tipo'> Type: {tipo.toUpperCase()} </p>
+              </div>
+              <div className='container__habilidades'>
+                <p className='info__habilidades'> Abilities: {habilidad.toUpperCase()} </p>
+              </div>
+              <div className='container__peso'>
+                <p className='info__peso'> Weight: {peso} Kgs</p>
+              </div>
+            </div>
           </div>
-        }
-      </div>
+          <div className='descarga__boton-container'>
+            <button className='descarga__boton' type='button' onClick={downloadImage}> Descargar imagen </button>
+          </div>
+        </div>
+      }
+      {
+        (msjError) &&
+        <div className='error__container'>
+          <p className='error__msj'> Ups, parece que el pokémon que buscaste no existe en nuestra base de datos, prueba con otro nombre. </p>
+        </div>
+      }
+      {
+        (loader) &&
+        <div class="lds-spinner">
+          <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
+        </div>
+      }
     </div>
   );
 }
